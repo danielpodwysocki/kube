@@ -5,11 +5,6 @@
 # "rook-ceph" namespace.
 ####################################################################################################
 
-# Namespace where the operator and other rook resources are created
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: rook-ceph # namespace:cluster
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
