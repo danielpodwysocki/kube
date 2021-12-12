@@ -5,12 +5,13 @@ metadata:
   name: openebs
   namespace: openebs
 spec:
+  interval: 5m
   chart:
-    chart: openebs
-    version: 3.0.6
-    sourceRef:
-      kind: HelmRepository
-      name: openebs-charts
-      namespace: flux-system
-    interval: 5m
-
+    spec:
+      chart: openebs
+      version: 3.0.6
+      sourceRef:
+        kind: HelmRepository
+        name: openebs-charts
+        namespace: flux-system
+  
