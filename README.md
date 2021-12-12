@@ -4,7 +4,7 @@
 
 When 10.0.0.10 is your k3s server:
 ```
-k3sup install --ip 10.0.0.10 --user root
+k3sup install --ip 10.0.0.10 --user root --k3s-extra-args "--no-deploy local-storage"
 ```
 
 ## Applying the repo
