@@ -1,0 +1,15 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: openebs
+  namespace: openebs
+spec:
+  chart:
+    chart: openebs
+    version: 3.0.6
+    sourceRef:
+      kind: HelmRepository
+      name: openebs-charts
+      namespace: flux-system
+
