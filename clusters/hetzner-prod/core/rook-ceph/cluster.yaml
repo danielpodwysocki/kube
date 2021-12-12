@@ -17,12 +17,13 @@ spec:
       interval: 1m
   values:
     cephClusterSpec:
-      image: quay.io/ceph/ceph:v16.2.7
       dataDirHostPath: /var/lib/rook
       mon:
         count: 1 
         allowMultiplePerNode: false
       storage:
-        useAllNodes: true
+        useAllNodes: false
+        nodes:
+          - name: 'xardas' 
         useAllDevices: true
 
