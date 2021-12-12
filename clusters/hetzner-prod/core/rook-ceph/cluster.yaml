@@ -23,8 +23,6 @@ spec:
         count: 1 
         allowMultiplePerNode: false
       storage:
-        useAllNodes: false
-        nodes:
-           - name: "xardas"
+        useAllNodes: true
         useAllDevices: true
 
