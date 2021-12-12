@@ -17,5 +17,5 @@ spec:
       interval: 1m
   values:
     nodeSelector:
-      hostname: xardas
+      kubernetes.io/hostname: "xardas"
 
