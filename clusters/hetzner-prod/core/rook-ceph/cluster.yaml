@@ -27,6 +27,6 @@ spec:
           - name: 'xardas' 
         useAllDevices: true
 
-    cephFileSystems: {}
-    cephObjectStores: {}
-    cephBlockPools: {}
+    cephFileSystems: []
+    cephObjectStores: []
+    cephBlockPools: []
