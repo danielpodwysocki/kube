@@ -5,3 +5,4 @@ resources:
 - rook.yaml
 - openebs.yaml
 - minecraft.yaml
+- prometheus-stack.yaml
