@@ -4,3 +4,4 @@ resources:
 - jetstack.yaml
 - rook.yaml
 - openebs.yaml
+- minecraft.yaml
