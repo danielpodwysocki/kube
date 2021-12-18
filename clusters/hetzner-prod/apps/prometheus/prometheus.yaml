@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: prometheus # has to match .spec.template.metadata.labels
+  serviceName: "prometheus"
+  replicas: 1 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: prometheus # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: prometheus
+        image: prom/prometheus:v2.32.1
+        ports:
+        - containerPort: 9090
+          name: prometheus
+        volumeMounts:
+        - name: data
+          mountPath: /prometheus
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "openebs-device"
+      resources:
+        requests:
+          storage: 1Gi
+
