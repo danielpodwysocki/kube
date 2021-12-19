@@ -1,37 +1,22 @@
 ---
-apiVersion: apps/v1
-kind: StatefulSet
+apiVersion: v1
+kind: Pod
 metadata:
   name: prometheus
   namespace: default
 spec:
-  selector:
-    matchLabels:
-      app: prometheus # has to match .spec.template.metadata.labels
-  serviceName: "prometheus"
-  replicas: 1 # by default is 1
-  template:
-    metadata:
-      labels:
-        app: prometheus # has to match .spec.selector.matchLabels
-    spec:
-      terminationGracePeriodSeconds: 10
-      containers:
-      - name: prometheus
-        image: prom/prometheus:v2.32.1
-        ports:
-        - containerPort: 9090
-          name: prometheus
-        volumeMounts:
-        - name: data
-          mountPath: /prometheus
-  volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "longhorn"
-      resources:
-        requests:
-          storage: 1Gi
+  containers:
+  - name: prometheus
+    image: prom/prometheus:v2.32.1
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - name: prometheus-vol
+      mountPath: /prometheus
+    ports:
+    - containerPort: 9090
+      name: prometheus
+  volumes:
+  - name: prometheus-vol
+    persistentVolumeClaim:
+      claimName: prometheus-pvc 
 
