@@ -6,3 +6,4 @@ resources:
 - openebs.yaml
 - minecraft.yaml
 - prometheus-stack.yaml
+- longhorn.yaml
