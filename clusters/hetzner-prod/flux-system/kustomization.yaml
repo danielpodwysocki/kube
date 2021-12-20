@@ -5,4 +5,3 @@ resources:
 - gotk-sync.yaml
 - helm-charts
 - core.yaml
-- apps.yaml
