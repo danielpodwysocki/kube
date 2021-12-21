@@ -6,6 +6,7 @@ metadata:
   namespace: default
 spec:
   containers:
+    serviceAccountName: prometheus
   - name: prometheus
     image: prom/prometheus:v2.32.1
     imagePullPolicy: IfNotPresent
