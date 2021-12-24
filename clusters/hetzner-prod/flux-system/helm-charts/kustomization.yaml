@@ -4,3 +4,4 @@ resources:
 - jetstack.yaml
 - minecraft.yaml
 - nfs-subdir-external-provisioner.yaml
+- prometheus-stack.yaml
