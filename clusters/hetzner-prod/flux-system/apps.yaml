@@ -14,3 +14,8 @@ spec:
   dependsOn:
     - name: core
     - name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+
