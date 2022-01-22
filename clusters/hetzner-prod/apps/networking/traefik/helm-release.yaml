@@ -15,4 +15,7 @@ spec:
         name: traefik-charts
         namespace: flux-system
       interval: 5m
-
+  values:
+    ports:
+      web:
+        redirectTo: websecure      
