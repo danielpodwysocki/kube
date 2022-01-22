@@ -5,3 +5,4 @@ resources:
 - minecraft.yaml
 - nfs-subdir-external-provisioner.yaml
 - prometheus-stack.yaml
+- authentik.yaml
