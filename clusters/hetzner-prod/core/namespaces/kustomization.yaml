@@ -4,3 +4,4 @@ resources:
 - longhorn-system.yaml
 - monitoring.yaml
 - networking.yaml
+- authentik.yaml
