@@ -6,3 +6,4 @@ resources:
 - helm-charts
 - core.yaml
 - apps.yaml
+- cluster-secrets.sops.yaml
