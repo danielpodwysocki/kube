@@ -35,4 +35,8 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
-
+    grafana:
+      ingress:
+        enabled: true
+        hosts:
+          - grafana.dapo.tech
