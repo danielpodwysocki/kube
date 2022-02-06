@@ -17,4 +17,6 @@ spec:
   values:
     persistence:
       defaultClassReplicaCount: 1
+    defaultSettings:
+      defaultDataPath: /storage/longhorn
 
