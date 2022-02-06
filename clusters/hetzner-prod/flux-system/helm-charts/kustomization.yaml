@@ -7,3 +7,4 @@ resources:
 - prometheus-stack.yaml
 - authentik.yaml
 - traefik.yaml
+- longhorn.yaml
