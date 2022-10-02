@@ -1,0 +1,36 @@
+# heavily inspired by the awesome Nicholas: https://github.com/dirtycajunrice/gitops/blob/master/cluster-critical/application-set.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-core
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/danielpodwysocki/kube.git
+        revision: HEAD
+        files:
+          - path: "cluster-core/**/gen-config.json"
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  template:
+    metadata:
+      name: '{{ name }}'
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
+    spec:
+      project: cluster-critical
+      source:
+        path: '{{ folderPath }}'
+        targetRevision: HEAD
+        repoURL: https://github.com/dirtycajunrice/gitops.git
+        helm:
+          valueFiles:
+            - values.yaml
+            - '{{ valueFile }}'
+      destination:
+        namespace: '{{ namespace }}'
+        name: '{{ cluster }}'
+      syncPolicy:
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+

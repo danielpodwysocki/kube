@@ -1,0 +1,9 @@
+[
+  {
+    "name": "traefik",
+    "cluster": "default",
+    "namespace": "monitoring",
+    "folderPath": "cluster-core/traefik",
+  }
+]
+
