@@ -9,10 +9,10 @@ metadata:
 spec:
   destination:
     namespace: default
-    name: traefik
+    server: https://kubernetes.default.svc
   project: default
   source:
     path: cluster-core/traefik
-    repoURL: https://github.com/danielpodwysocki/kube/tree/main/cluster-core
+    repoURL: https://github.com/danielpodwysocki/kube.git
     targetRevision: HEAD
 
