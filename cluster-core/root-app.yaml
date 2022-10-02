@@ -1,0 +1,18 @@
+# apply this manifest to have everything else appear 
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-app
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    name: root-app
+  project: default
+  source:
+    path: cluster-core
+    repoURL: https://github.com/danielpodwysocki/kube/tree/main/cluster-core
+    targetRevision: HEAD
+

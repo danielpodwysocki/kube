@@ -1,0 +1,18 @@
+# apply this manifest to have everything else appear 
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    name: traefik
+  project: default
+  source:
+    path: cluster-core/traefik
+    repoURL: https://github.com/danielpodwysocki/kube/tree/main/cluster-core
+    targetRevision: HEAD
+
