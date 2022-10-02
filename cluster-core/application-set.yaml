@@ -19,7 +19,6 @@ spec:
       annotations:
         argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
     spec:
-      project: cluster-core
       source:
         path: '{{ folderPath }}'
         targetRevision: HEAD
