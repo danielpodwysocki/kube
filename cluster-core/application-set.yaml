@@ -18,18 +18,18 @@ spec:
       annotations:
         argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
     spec:
-      project: cluster-critical
+      project: cluster-core
       source:
         path: '{{ folderPath }}'
         targetRevision: HEAD
-        repoURL: https://github.com/dirtycajunrice/gitops.git
+        repoURL: https://github.com/danielpodwysocki/kube.git
         helm:
           valueFiles:
             - values.yaml
             - '{{ valueFile }}'
       destination:
         namespace: '{{ namespace }}'
-        name: '{{ cluster }}'
+        server: https://kubernetes.default.svc
       syncPolicy:
         syncOptions:
           - ApplyOutOfSyncOnly=true
