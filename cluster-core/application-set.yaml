@@ -28,7 +28,7 @@ spec:
             - values.yaml
             - '{{ valueFile }}'
       destination:
-        namespace: '{{ namespace }}'
+        namespace: default
         server: https://kubernetes.default.svc
       syncPolicy:
         syncOptions:
