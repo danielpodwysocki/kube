@@ -16,3 +16,21 @@ spec:
     repoURL: https://github.com/danielpodwysocki/kube.git
     targetRevision: HEAD
 
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: echo-server
+  namespace: default
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cluster-apps/echo-server
+    repoURL: https://github.com/danielpodwysocki/kube.git
+    targetRevision: HEAD
+
