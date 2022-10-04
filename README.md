@@ -14,3 +14,6 @@ The inital manifest that after applying will deploy everything is respectivally:
 - cluster-core/root-app.yaml
 - cluster-apps/root-app.yaml
 
+
+# todos:
+- yamllint hooks
