@@ -1,6 +1,6 @@
 traefik:
   autoscaling:
     enabled: false
-     minReplicas: 1
-     maxReplicas: 10
+    minReplicas: 1
+    maxReplicas: 10
   
