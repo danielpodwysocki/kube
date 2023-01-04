@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: danielpodwysocki-dapo-awx
+  namespace: argocd 
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/dapo/awx
+    repoURL: https://github.com/danielpodwysocki/kube.git
+    targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
+    helm:
+      valueFiles:
+        - ../../../values/common.yaml
+        - ../../../values/dapo.yaml
+  syncPolicy:
+    automated: {}
