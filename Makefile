@@ -1,4 +1,8 @@
-.PHONY: dev dev-home cluster argo
+.PHONY: dev dev-home cluster argo argo-secret
+
+
+argo-secret:
+	hack/get_argo_secret.sh
 
 # Home cluster
 dev-home:
@@ -11,8 +15,15 @@ dev: argo
 argo: cluster
 	kubectl create namespace argocd
 	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && printf "\n"
+	hack/get_argo_secret.sh
 
 cluster:
-	kind create cluster --name kind-dapo --config=dapo-dev-cluster.yaml
+	kind create cluster --name dapo --config=dapo-dev-cluster.yaml
 	kubectl config use-context kind-dapo
+
+clean:
+	kind delete cluster --name dapo
+
+port-forward:
+    # if this env is empty, the script will use the default port 8080
+	hack/argo.sh ${LOCAL_ARGO_PORT}

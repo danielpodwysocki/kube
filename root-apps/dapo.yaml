@@ -17,7 +17,8 @@ spec:
     targetRevision: main
     helm:
       valueFiles:
-        - ../values/common.yaml
+        - ../../values/common.yaml
+        - ../../values/dapo.yaml
   syncPolicy:
     automated: {}
 
@@ -40,6 +41,7 @@ spec:
     targetRevision: main
     helm:
       valueFiles:
-        - ../values/common.yaml
+        - ../../values/common.yaml
+        - ../../values/dapo.yaml
   syncPolicy:
     automated: {}
