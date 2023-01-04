@@ -14,7 +14,7 @@ spec:
   source:
     path: clusters/common
     repoURL: https://github.com/danielpodwysocki/kube.git
-    targetRevision: "{{ .Values.danielpodwysocki.targetRevision }}"
+    targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
   syncPolicy:
     automated: {}
 
@@ -34,6 +34,6 @@ spec:
   source:
     path: clusters/common
     repoURL: https://github.com/danielpodwysocki/kube.git
-    targetRevision: "{{ .Values.danielpodwysocki.targetRevision }}"
+    targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
   syncPolicy:
     automated: {}
