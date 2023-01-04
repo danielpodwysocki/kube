@@ -1,12 +1,12 @@
-.PHONY: dev dev-home
+.PHONY: dev dev-home cluster argo
 
 # Home cluster
 dev-home:
-	echo todo
+	kubectl apply -f root-apps/home.yaml
 
 # Main cluster
-dev:
-	echo todo
+dev: argo
+	kubectl apply -f root-apps/dapo.yaml
 
 argo: cluster
 	kubectl create namespace argocd
@@ -14,7 +14,5 @@ argo: cluster
 	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && printf "\n"
 
 cluster:
-	kind create cluster --name kind-dapo --config=dev-cluster-conf.yml
+	kind create cluster --name kind-dapo --config=dapo-dev-cluster.yaml
 	kubectl config use-context kind-dapo
-
-

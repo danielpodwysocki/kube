@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-common
+  name: danielpodwysocki-common-metallb
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -14,10 +14,7 @@ spec:
   source:
     path: clusters/common
     repoURL: https://github.com/danielpodwysocki/kube.git
-    targetRevision: main
-    helm:
-      valueFiles:
-        - ../values/common.yaml
+    targetRevision: "{{ .Values.danielpodwysocki.targetRevision }}"
   syncPolicy:
     automated: {}
 
@@ -25,7 +22,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-dapo
+  name: danielpodwysocki-common-metallb
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -35,11 +32,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: clusters/dapo
+    path: clusters/common
     repoURL: https://github.com/danielpodwysocki/kube.git
-    targetRevision: main
-    helm:
-      valueFiles:
-        - ../values/common.yaml
+    targetRevision: "{{ .Values.danielpodwysocki.targetRevision }}"
   syncPolicy:
     automated: {}
