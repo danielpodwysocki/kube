@@ -1,8 +1,0 @@
-name: echo-server
-apiVersion: v2
-version: 1.0.0
-dependencies:
-  - name: echo-server
-    version: "0.6.0"
-    repository: https://ealenn.github.io/charts
-
