@@ -12,7 +12,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: clusters/common
+    path: clusters/common/metallb
     repoURL: https://github.com/danielpodwysocki/kube.git
     targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
   syncPolicy:
@@ -22,7 +22,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-common-metallb
+  name: danielpodwysocki-common-metallb-config
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -32,7 +32,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: clusters/common
+    path: clusters/common/metallb-config
     repoURL: https://github.com/danielpodwysocki/kube.git
     targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
   syncPolicy:
