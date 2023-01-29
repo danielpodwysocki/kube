@@ -6,6 +6,9 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  # make sure this app is synced before all other apps
+  annotations:
+    argocd.argoproj.io/hook: PreSync
 spec:
   destination:
     namespace: default
