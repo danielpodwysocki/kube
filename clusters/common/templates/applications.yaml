@@ -19,7 +19,6 @@ spec:
     repoURL: https://github.com/danielpodwysocki/kube.git
     targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
   syncPolicy:
-    createNamespace: true
     automated: {}
 
 ---
