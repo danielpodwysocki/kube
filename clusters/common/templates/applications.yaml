@@ -6,12 +6,9 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/sync-wave: "0"
 spec:
   destination:
-    namespace: metallb-system
+    namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -29,12 +26,9 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
-    namespace: metallb-system
+    namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -51,9 +45,6 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   destination:
     namespace: default
