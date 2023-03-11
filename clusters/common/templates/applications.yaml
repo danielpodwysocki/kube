@@ -10,7 +10,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
-    namespace: default
+    namespace: metallb-system
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -19,6 +19,7 @@ spec:
     targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
   syncPolicy:
     automated: {}
+    createNamespace: true
 
 ---
 apiVersion: argoproj.io/v1alpha1
