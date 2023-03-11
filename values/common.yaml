@@ -1,3 +1,5 @@
 ---
 danielpodwysocki:
   targetRevision: main
+  sealed_secrets_chart_version: 2.7.6
+
