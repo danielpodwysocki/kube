@@ -2,4 +2,5 @@
 danielpodwysocki:
   targetRevision: main
   sealed_secrets_chart_version: 2.7.6
+  metallb_chart_version: 0.13.7
 

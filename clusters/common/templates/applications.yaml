@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-common-metallb
+  name: metallb
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -14,12 +14,15 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: clusters/common/metallb
-    repoURL: https://github.com/danielpodwysocki/kube.git
-    targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
+    repoURL: https://metallb.github.io/metallb
+    targetRevision: {{ .Values.danielpodwysocki.metallb_chart_version }}
+    chart: metallb
+    helm:
+      values: | {{ .Values.metallb | toYaml | nindent 8 }}
   syncPolicy:
     automated: {}
-    createNamespace: true
+    syncOptions:
+      - CreateNamespace=true
 
 ---
 apiVersion: argoproj.io/v1alpha1
