@@ -2,6 +2,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: danielpodwysocki-common-longhorn
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  destination:
+    namespace: longhorn-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://charts.longhorn.io
+    targetRevision: {{ .Values.danielpodwysocki.longhorn_chart_version }}
+    helm:
+      values: | {{ .Values.longhorn | toYaml | nindent 8 }}
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: metallb
   namespace: argocd
   finalizers:
@@ -88,5 +113,4 @@ spec:
     targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
   syncPolicy:
     automated: {}
-
 
