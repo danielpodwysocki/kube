@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-common-longhorn
+  name: longhorn
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -54,7 +54,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-common-sealed-secrets
+  name: sealed-secrets
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -62,7 +62,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
-    namespace: default
+    namespace: kube-system
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -76,7 +76,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-common-metallb-configuration
+  name: metallb-configuration
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -97,7 +97,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-common-traefik
+  name: traefik
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
