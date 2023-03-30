@@ -16,6 +16,7 @@ spec:
   source:
     repoURL: https://charts.longhorn.io
     targetRevision: {{ .Values.danielpodwysocki.longhorn_chart_version }}
+    chart: longhorn
     helm:
       values: | {{ .Values.longhorn | toYaml | nindent 8 }}
   syncPolicy:
