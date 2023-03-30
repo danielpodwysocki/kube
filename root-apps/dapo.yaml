@@ -49,3 +49,22 @@ spec:
   syncPolicy:
     automated: {}
 
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dapo-private
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: dapo
+    repoURL: https://github.com/danielpodwysocki/argo-private.git
+    targetRevision: main
+  syncPolicy:
+    automated: {}
