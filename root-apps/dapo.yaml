@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-common
+  name: common
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -29,7 +29,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-dapo
+  name: dapo
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -48,3 +48,4 @@ spec:
         - ../../values/dapo.yaml
   syncPolicy:
     automated: {}
+
