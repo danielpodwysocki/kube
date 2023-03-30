@@ -6,3 +6,6 @@ danielpodwysocki:
 longhorn:
   persistence:
     defaultClassReplicaCount: 1
+  defaultSettings:
+    backupTarget: s3://dapo-kube-backups@us-east-1/prod
+    backupTargetCredentialSecret: storj-secret
