@@ -92,7 +92,7 @@ spec:
     targetRevision: {{ .Values.danielpodwysocki.cert_manager_chart_version }}
     chart: cert-manager
     helm:
-      values: | {{ .Values.cert-manager | toYaml | nindent 8 }}
+      values: | {{ .Values.cert_manager | toYaml | nindent 8 }}
   syncPolicy:
     automated: {}
     syncOptions:
