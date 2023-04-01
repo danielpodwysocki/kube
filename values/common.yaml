@@ -7,3 +7,5 @@ danielpodwysocki:
   cert_manager_chart_version: 1.11.0
   velero_chart_version: 3.1.5
 
+cert_manager:
+  installCRDs: true
