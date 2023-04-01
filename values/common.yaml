@@ -10,3 +10,8 @@ danielpodwysocki:
 
 cert_manager:
   installCRDs: true
+
+argo_workflows:
+  server:
+    extraArgs:
+      - --auth-mode=local
