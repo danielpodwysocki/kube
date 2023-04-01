@@ -6,6 +6,7 @@ danielpodwysocki:
   longhorn_chart_version: 1.4.1
   cert_manager_chart_version: 1.11.0
   velero_chart_version: 3.1.5
+  argo_workflows_chart_version: 0.22.15
 
 cert_manager:
   installCRDs: true
