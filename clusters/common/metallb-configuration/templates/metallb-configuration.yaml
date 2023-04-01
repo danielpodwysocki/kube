@@ -1,0 +1,9 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: main-ip-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - "{{ .Values.danielpodwysocki.metallb_range_begin }}-{{ .Values.danielpodwysocki.metallb_range_end }}"

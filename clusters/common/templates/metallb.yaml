@@ -1,0 +1,38 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://metallb.github.io/metallb
+    targetRevision: {{ .Values.danielpodwysocki.metallb_chart_version }}
+    chart: metallb
+    helm:
+      values: | {{ .Values.metallb | toYaml | nindent 8 }}
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: main-ip-pool
+  namespace: metallb-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  addresses:
+  - "{{ .Values.danielpodwysocki.metallb_range_begin }}-{{ .Values.danielpodwysocki.metallb_range_end }}"
+
