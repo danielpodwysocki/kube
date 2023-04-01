@@ -25,14 +25,23 @@ spec:
       - CreateNamespace=true
 
 ---
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: main-ip-pool
-  namespace: metallb-system
+  name: metallb-configuration
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  addresses:
-  - "{{ .Values.danielpodwysocki.metallb_range_begin }}-{{ .Values.danielpodwysocki.metallb_range_end }}"
-
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/common/metallb-configuration
+    repoURL: https://github.com/danielpodwysocki/kube.git
+    targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
+  syncPolicy:
+    automated: {}
