@@ -14,4 +14,4 @@ cert_manager:
 argo_workflows:
   server:
     extraArgs:
-      - --auth-mode=local
+      - --auth-mode=server
