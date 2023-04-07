@@ -1,0 +1,72 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: common
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  # make sure this app is synced before all other apps
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/common
+    repoURL: https://github.com/danielpodwysocki/kube.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - ../../values/common.yaml
+        - ../../values/dapo.yaml
+        - ../../values/local-dev.yaml
+  syncPolicy:
+    automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dapo
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/dapo
+    repoURL: https://github.com/danielpodwysocki/kube.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - ../../values/common.yaml
+        - ../../values/dapo.yaml
+        - ../../values/local-dev.yaml
+  syncPolicy:
+    automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dapo-private
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: dapo
+    repoURL: https://github.com/danielpodwysocki/argo-private.git
+    targetRevision: main
+  syncPolicy:
+    automated: {}
