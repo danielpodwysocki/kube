@@ -1,25 +1,25 @@
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: argo-workflows
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-spec:
-  destination:
-    namespace: kube-system
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: {{ .Values.danielpodwysocki.argo_workflows_chart_version }}
-    chart: argo-workflows
-    helm:
-      values: | {{ .Values.argo_workflows | toYaml | nindent 8 }}
-  syncPolicy:
-    automated: {}
-    syncOptions:
-      - CreateNamespace=true
+#---
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: argo-workflows
+#  namespace: argocd
+#  finalizers:
+#    - resources-finalizer.argocd.argoproj.io
+#  annotations:
+#    argocd.argoproj.io/sync-wave: "1"
+#spec:
+#  destination:
+#    namespace: kube-system
+#    server: https://kubernetes.default.svc
+#  project: default
+#  source:
+#    repoURL: https://argoproj.github.io/argo-helm
+#    targetRevision: {{ .Values.danielpodwysocki.argo_workflows_chart_version }}
+#    chart: argo-workflows
+#    helm:
+#      values: | {{ .Values.argo_workflows | toYaml | nindent 8 }}
+#  syncPolicy:
+#    automated: {}
+#    syncOptions:
+#      - CreateNamespace=true
