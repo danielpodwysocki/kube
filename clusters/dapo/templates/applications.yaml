@@ -14,7 +14,7 @@ spec:
   source:
     chart: awx-operator
     repoURL: https://ansible.github.io/awx-operator/
-    targetRevision: 2.15.0
+    targetRevision: 1.1.3
   syncPolicy:
     automated: {}
     syncOptions:
