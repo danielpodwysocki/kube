@@ -7,16 +7,20 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "-200"
 spec:
   destination:
-    namespace: default
+    namespace: traefik
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: clusters/common/traefik
-    repoURL: https://github.com/danielpodwysocki/kube.git
-    targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
+    chart: traefik
+    repoURL: https://traefik.github.io/charts
+    targetRevision: {{ .Values.danielpodwysocki.traefik_chart_version }}
+    helm:
+      values: | {{ .Values.traefik | toYaml | nindent 8 }}
   syncPolicy:
     automated: {}
+    syncOptions:
+      - CreateNamespace=true
 

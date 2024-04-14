@@ -3,6 +3,7 @@ danielpodwysocki:
   targetRevision: main
   sealed_secrets_chart_version: 2.7.6
   longhorn_chart_version: 1.4.1
+  traefik_chart_version: 27.0.2
   cert_manager_chart_version: 1.11.0
   velero_chart_version: 3.1.5
   argo_workflows_chart_version: 0.22.15
@@ -14,3 +15,11 @@ argo_workflows:
   server:
     extraArgs:
       - --auth-mode=server
+
+traefik:
+  service:
+    enabled: true
+    type: NodePort
+  ports:
+    websecure:
+      nodePort: 32443
