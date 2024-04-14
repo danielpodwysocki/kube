@@ -8,7 +8,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: traefik
+    namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
