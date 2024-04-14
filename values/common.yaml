@@ -2,7 +2,6 @@
 danielpodwysocki:
   targetRevision: main
   sealed_secrets_chart_version: 2.7.6
-  metallb_chart_version: 0.13.7
   longhorn_chart_version: 1.4.1
   cert_manager_chart_version: 1.11.0
   velero_chart_version: 3.1.5
