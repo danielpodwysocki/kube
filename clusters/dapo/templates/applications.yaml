@@ -2,22 +2,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: danielpodwysocki-dapo-awx
+  name: awx-operator
   namespace: argocd 
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: default
+    namespace: traefik
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: clusters/dapo/awx
-    repoURL: https://github.com/danielpodwysocki/kube.git
-    targetRevision: {{ .Values.danielpodwysocki.targetRevision }}
+    chart: awx-operator
+    repoURL: https://ansible.github.io/awx-operator/
+    targetRevision: 2.15.0
     helm:
-      valueFiles:
-        - ../../../values/common.yaml
-        - ../../../values/dapo.yaml
+      values: | {{ .Values.awx-operator | toYaml | nindent 8 }}
   syncPolicy:
     automated: {}
+    syncOptions:
+      - CreateNamespace=true
+
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+spec:
+  service_type: clusterip
