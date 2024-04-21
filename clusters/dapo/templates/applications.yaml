@@ -17,10 +17,6 @@ spec:
     chart: awx-operator
     repoURL: https://ansible.github.io/awx-operator/
     targetRevision: 2.15.0
-  helm:
-    values:
-      # the 'password' key in this secret is what gets looked up
-      admin_password_secret: awx-admin-password
   syncPolicy:
     automated: {}
     syncOptions:
@@ -35,3 +31,4 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   service_type: clusterip
+  admin_password_secret: awx-admin-password
